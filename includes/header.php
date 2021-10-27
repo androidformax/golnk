@@ -27,7 +27,7 @@ include 'includes/functions.php';
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a href="<?php echo get_url('/login.php') ?>" class="btn btn-primary">Войти</a>
+                        <a href="<?php echo get_url('login.php') ?>" class="btn btn-primary">Войти</a>
                     </li>
                 </ul>
             </div>
