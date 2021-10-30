@@ -23,3 +23,9 @@ function db_query($sql = ''){
 
     return connectDB()->query($sql);
 }
+
+function db_exec($sql = ''){
+    if(empty($sql)) return false;
+
+    return connectDB()->exec($sql);
+}

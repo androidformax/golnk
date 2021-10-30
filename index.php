@@ -2,10 +2,18 @@
 
 if(isset($_GET['url']) && !empty($_GET['url']))
 {
-    $url = trim($_GET['url']);
+    $url = strtolower(trim($_GET['url']));
 
-} else {
+    $link = db_query("SELECT * FROM golnk.links WHERE `short_link` = '$url';")->fetch();
+    var_dump($link);
 
+    if(empty($link)){
+        echo "Ссылка не найдена.";
+        die;
+    }
+    db_exec("UPDATE links SET views = views + 1 WHERE short_link = '$url';");
+    header("Location: " . $link['long_link']);
+    die;
 }
 ?>
 	<main class="container">
