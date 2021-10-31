@@ -1,20 +1,19 @@
-<?php require_once "includes/header.php";
-
-if(isset($_GET['url']) && !empty($_GET['url']))
-{
+<?php
+if(isset($_GET['url']) && !empty($_GET['url'])) {
+    include_once "includes/functions.php";
     $url = strtolower(trim($_GET['url']));
 
-    $link = db_query("SELECT * FROM golnk.links WHERE `short_link` = '$url';")->fetch();
-    var_dump($link);
+    $link = db_query("SELECT * FROM `links` WHERE `short_link` = '$url';")->fetch();
 
-    if(empty($link)){
-        echo "Ссылка не найдена.";
+    if (empty($link)) {
+        header('Location: 404.php');
         die;
     }
-    db_exec("UPDATE links SET views = views + 1 WHERE short_link = '$url';");
-    header("Location: " . $link['long_link']);
+    updateViews($url);
+    header('Location: ' . $link['long_link']);
     die;
 }
+include_once "includes/header.php";
 ?>
 	<main class="container">
 		<div class="row mt-5">

@@ -1,13 +1,12 @@
-<?php
-include 'includes/functions.php';
+<?php include_once 'includes/functions.php';
 
 $db = connectDB();
 
-$usersCount = db_query("SELECT COUNT(id) FROM golnk.users;")->fetchColumn();
+$usersCount = getUsersCount();
 
-$linksCount = db_query("SELECT COUNT(id) FROM golnk.links;")->fetchColumn();
+$linksCount = getLinksCount();
 
-$sumViews = db_query("SELECT SUM(views) FROM golnk.links;")->fetchColumn();
+$sumViews = getSumViews();
 
 ?>
 <!doctype html>
@@ -43,4 +42,3 @@ $sumViews = db_query("SELECT SUM(views) FROM golnk.links;")->fetchColumn();
         </div>
     </nav>
 </header>
-<?php /*var_dump($users);*/
