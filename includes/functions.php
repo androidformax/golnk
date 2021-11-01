@@ -34,6 +34,10 @@ function getLinksCount(){
 function getSumViews(){
     return db_query("SELECT SUM(views) FROM `links`;")->fetchColumn();
 }
-function updateViews(){
-
+function getLinkInfo($url){
+    if(empty($url)) return [];
+    return db_query("SELECT * FROM `links` WHERE `short_link` = '$url';")->fetch();
+}
+function updateViews($url){
+    db_query("UPDATE `links` SET `views` = `views`+1 WHERE `short_link` = '$url';", true);
 }

@@ -1,5 +1,5 @@
 <?php
-include_once "includes/header.php"; ?>
+include_once "includes/header404.php"; ?>
 	<main class="container">
 		<div class="row mt-5">
 			<div class="col">

@@ -3,7 +3,7 @@ if(isset($_GET['url']) && !empty($_GET['url'])) {
     include_once "includes/functions.php";
     $url = strtolower(trim($_GET['url']));
 
-    $link = db_query("SELECT * FROM `links` WHERE `short_link` = '$url';")->fetch();
+    $link = getLinkInfo($url);
 
     if (empty($link)) {
         header('Location: 404.php');
@@ -18,7 +18,7 @@ include_once "includes/header.php";
 	<main class="container">
 		<div class="row mt-5">
 			<div class="col">
-				<h2 class="text-center">Необходимо <a href="<?php echo get_url('register.php') ?>">зарегистрироваться</a> или <a href="<?php echo get_url('login.php') ?>">войти</a> под своей учетной записью</h2>
+				<h2 class="text-center">Необходимо <a href="<?php echo get_url('register.php') ?>">зарегистрироваться</a> или <a href="<?php echo get_url('register.php') ?>">войти</a> под своей учетной записью</h2>
 			</div>
 		</div>
 		<div class="row mt-5">
