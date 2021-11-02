@@ -38,6 +38,16 @@ function getLinkInfo($url){
     if(empty($url)) return [];
     return db_query("SELECT * FROM `links` WHERE `short_link` = '$url';")->fetch();
 }
+function getUserInfo($login){
+    if(empty($login)) return [];
+    return db_query("SELECT * FROM `users` WHERE `login` = '$login';")->fetch();
+}
 function updateViews($url){
     db_query("UPDATE `links` SET `views` = `views`+1 WHERE `short_link` = '$url';", true);
+}
+
+function registerUser($authData){
+    if(epmty($authData) || !isset($authData['login']) || empty($authData['login']) || !isset($authData['pass']) || !isset($authData['pass2']) )
+        return false;
+
 }

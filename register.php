@@ -1,5 +1,11 @@
 <?php
-include_once "includes/header.php"; ?>
+include_once "includes/header.php";
+//var_dump($_POST);
+if(isset($_POST['login']) && !empty($_POST['login'])) {
+    registerUser($_POST);
+
+}
+?>
 
 	<main class="container">
 		<!--<div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
