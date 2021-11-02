@@ -1,6 +1,9 @@
 <?php
 include_once "includes/header.php";
+
 //var_dump($_POST);
+
+$error = '';
 if(isset($_POST['login']) && !empty($_POST['login'])) {
     registerUser($_POST);
 

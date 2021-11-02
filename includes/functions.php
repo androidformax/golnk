@@ -50,4 +50,11 @@ function registerUser($authData){
     if(epmty($authData) || !isset($authData['login']) || empty($authData['login']) || !isset($authData['pass']) || !isset($authData['pass2']) )
         return false;
 
+    $user = getUserInfo($authData['login']);
+    if(!empty($user)){
+        $_SESSION['error'] = "Пользователь $user уже существует, выберите другое имя.";
+        header("Location register.php");
+        die;
+    }
+
 }
