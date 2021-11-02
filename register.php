@@ -1,24 +1,32 @@
 <?php
-include_once "includes/header.php";
+include "includes/header.php";
 
-//var_dump($_POST);
+var_dump($_POST);
 
 $error = '';
+if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    $_SESSION['error'] = '';
+}
+
 if(isset($_POST['login']) && !empty($_POST['login'])) {
     registerUser($_POST);
-
 }
-?>
 
-	<main class="container">
+?>
+<main class="container">
 		<!--<div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
 			Все ок
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-			А тут не ок
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>-->
+        <?php
+        if(!empty($error)) {
+        ?>
+		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+			<?php echo $error; ?>
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+        <?php } ?>
 		<div class="row mt-5">
 			<div class="col">
 				<h2 class="text-center">Регистрация</h2>
@@ -48,5 +56,4 @@ if(isset($_POST['login']) && !empty($_POST['login'])) {
 			</div>
 		</div>
 	</main>
-<?php
-include_once "includes/footer.php"; ?>
+<?php include_once "includes/footer.php"; ?>
