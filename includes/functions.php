@@ -52,8 +52,7 @@ function addUser($login, $pass){
 }
 
 function registerUser($authData){
-    if(empty($authData) || !isset($authData['login']) || empty($authData['login']) || !isset($authData['pass'])
-        || !isset($authData['pass2'])) return false;
+    if(empty($authData) || !isset($authData['login']) || empty($authData['login']) || !isset($authData['pass']) || !isset($authData['pass2'])) return false;
 
     $user = getUserInfo($authData['login']);
     if(!empty($user)){
@@ -61,7 +60,7 @@ function registerUser($authData){
         header('Location: register.php');
         die;
     }
-    if ($authData['pass']!==$authData['pass2']){
+    if($authData['pass']!=$authData['pass2']){
         $_SESSION['error'] = "Пароли не совпадают.";
         header('Location: register.php');
         die;

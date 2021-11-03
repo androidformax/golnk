@@ -1,5 +1,5 @@
 <?php
-include "includes/header.php";
+include_once "includes/header.php";
 
 $error = '';
 if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
@@ -12,7 +12,7 @@ if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
     $success = $_SESSION['success'];
     unset($_SESSION['success']);
 }
-var_dump($_SESSION);
+
 if(isset($_POST['login']) && !empty($_POST['login'])) {
     registerUser($_POST);
 }
@@ -35,7 +35,7 @@ if(isset($_POST['login']) && !empty($_POST['login'])) {
 		<div class="row mt-5">
 			<div class="col">
 				<h2 class="text-center">Регистрация</h2>
-				<p class="text-center">Если у вас уже есть логин и пароль, <a href="<?php echo getUrl('login.php') ?>">войдите на сайт</a></p>
+				<p class="text-center">Если у вас уже есть логин и пароль, <a href="<?php echo getUrl('login.php'); ?>">войдите на сайт</a></p>
 			</div>
 		</div>
 		<div class="row mt-3">
