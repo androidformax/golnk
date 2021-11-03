@@ -1,6 +1,6 @@
 <?php require_once 'includes/config.php';
 
-function get_url($page = ''){
+function getUrl($page = ''){
     return HOST . "/" . $page;
 }
 function connectDB(){
@@ -24,7 +24,7 @@ function db_query($sql = '', $exec = false){
     return connectDB()->query($sql);
 }
 
-function getUsersCount(){
+function getUserCount(){
     return db_query("SELECT COUNT(id) FROM `users`;")->fetchColumn();
 }
 
@@ -46,14 +46,29 @@ function updateViews($url){
     db_query("UPDATE `links` SET `views` = `views`+1 WHERE `short_link` = '$url';", true);
 }
 
+function addUser($login, $pass){
+    $password = password_hash($pass, PASSWORD_DEFAULT);
+    return db_query("INSERT INTO `users` (`id`, `login`, `pass`) VALUES (NULL, '$login', '$password');", true);
+}
+
 function registerUser($authData){
-    if(empty($authData) || !isset($authData['login']) || empty($authData['login'])
-        || !isset($authData['pass']) || !isset($authData['pass2'])) return false;
+    if(empty($authData) || !isset($authData['login']) || empty($authData['login']) || !isset($authData['pass']) || !isset($authData['pass2'])) return false;
 
     $user = getUserInfo($authData['login']);
     if(!empty($user)){
-        $_SESSION['error'] = "Пользователь \"" . $authData['login'] . "\" уже существует, выберите другое имя.";
+        $_SESSION['error'] = "Пользователь '" . $authData['login'] . "' уже существует, выберите другое имя.";
         header('Location: register.php');
+        die;
+    }
+    if ($authData['pass']!==$authData['pass2']){
+        $_SESSION['error'] = "Пароли не совпадают.";
+        header('Location: register.php');
+        die;
+    }
+
+    if(addUser($authData['login'], $authData['pass'])){
+        $_SESSION['success'] = "Регистрация прошла успешно.";
+        header('Location: login.php');
         die;
     }
 

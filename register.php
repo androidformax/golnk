@@ -1,12 +1,16 @@
 <?php
 include "includes/header.php";
 
-var_dump($_POST);
-
 $error = '';
 if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
     $error = $_SESSION['error'];
     $_SESSION['error'] = '';
+}
+
+$success = '';
+if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
+    $success = $_SESSION['success'];
+    $_SESSION['$success'] = '';
 }
 
 if(isset($_POST['login']) && !empty($_POST['login'])) {
@@ -14,14 +18,15 @@ if(isset($_POST['login']) && !empty($_POST['login'])) {
 }
 
 ?>
+
 <main class="container">
-		<!--<div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-			Все ок
+        <?php if(!empty($success)) {?>
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <?php echo $success; ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>-->
-        <?php
-        if(!empty($error)) {
-        ?>
+		</div>
+        <?php } ?>
+         <?php if(!empty($error)) {?>
 		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
 			<?php echo $error; ?>
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -30,7 +35,7 @@ if(isset($_POST['login']) && !empty($_POST['login'])) {
 		<div class="row mt-5">
 			<div class="col">
 				<h2 class="text-center">Регистрация</h2>
-				<p class="text-center">Если у вас уже есть логин и пароль, <a href="<?php echo get_url('login.php') ?>">войдите на сайт</a></p>
+				<p class="text-center">Если у вас уже есть логин и пароль, <a href="<?php echo getUrl('login.php') ?>">войдите на сайт</a></p>
 			</div>
 		</div>
 		<div class="row mt-3">
