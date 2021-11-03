@@ -4,15 +4,15 @@ include "includes/header.php";
 $error = '';
 if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
     $error = $_SESSION['error'];
-    $_SESSION['error'] = '';
+    unset($_SESSION['error']);
 }
 
 $success = '';
 if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
     $success = $_SESSION['success'];
-    $_SESSION['$success'] = '';
+    unset($_SESSION['success']);
 }
-
+var_dump($_SESSION);
 if(isset($_POST['login']) && !empty($_POST['login'])) {
     registerUser($_POST);
 }

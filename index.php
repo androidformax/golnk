@@ -23,17 +23,23 @@ include_once "includes/header.php";
 		</div>
 		<div class="row mt-5">
 			<div class="col">
-				<h2 class="text-center">Пользователей в системе: <?php echo $usersCount;?></h2>
+				<h2 class="text-center">Пользователей в системе: <?php if (isset($usersCount)) {
+                        echo $usersCount;
+                    } ?></h2>
 			</div>
 		</div>
 		<div class="row mt-5">
 			<div class="col">
-				<h2 class="text-center">Ссылок в системе: <?php echo $linksCount;?></h2>
+				<h2 class="text-center">Ссылок в системе: <?php if (isset($linksCount)) {
+                        echo $linksCount;
+                    } ?></h2>
 			</div>
 		</div>
 		<div class="row mt-5">
 			<div class="col">
-				<h2 class="text-center">Всего переходов по ссылкам: <?php echo $sumViews;?></h2>
+				<h2 class="text-center">Всего переходов по ссылкам: <?php if (isset($sumViews)) {
+                        echo $sumViews;
+                    } ?></h2>
 			</div>
 		</div>
 	</main>

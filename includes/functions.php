@@ -52,7 +52,8 @@ function addUser($login, $pass){
 }
 
 function registerUser($authData){
-    if(empty($authData) || !isset($authData['login']) || empty($authData['login']) || !isset($authData['pass']) || !isset($authData['pass2'])) return false;
+    if(empty($authData) || !isset($authData['login']) || empty($authData['login']) || !isset($authData['pass'])
+        || !isset($authData['pass2'])) return false;
 
     $user = getUserInfo($authData['login']);
     if(!empty($user)){

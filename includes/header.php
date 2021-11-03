@@ -2,11 +2,8 @@
 include_once 'includes/functions.php';
 
 $db = connectDB();
-
 $usersCount = getUserCount();
-
 $linksCount = getLinksCount();
-
 $sumViews = getSumViews();
 
 ?>
