@@ -74,3 +74,21 @@ function registerUser($authData){
 
     return true;
 }
+function login($authData){
+    if(empty($authData) || !isset($authData['login']) || empty($authData['login']) || !isset($authData['pass']) || empty($authData['pass'])) {
+        $_SESSION['error'] = "Логин или пароль не могут быть пустыми.";
+        header('Location: login.php');
+        die;
+    }
+    $user = getUserInfo($authData['login']);
+    if(empty($user)){
+        $_SESSION['error'] = "Логин или пароль не верны.";
+        header('Location: login.php');
+        die;
+    }
+    if(password_verify($authData['pass'], $user['pass'])){
+        $_SESSION['user'] = $user;
+        header('Location: profile.php');
+        die;
+    }
+}

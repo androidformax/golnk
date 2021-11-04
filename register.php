@@ -40,7 +40,7 @@ if(isset($_POST['login']) && !empty($_POST['login'])) {
 		</div>
 		<div class="row mt-3">
 			<div class="col-4 offset-4">
-				<form action ="" method="post">
+				<form action="" method="post">
 					<div class="mb-3">
 						<label for="login-input" class="form-label">Логин</label>
 						<input type="text" class="form-control is-valid" id="login-input" required name="login">
