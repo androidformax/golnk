@@ -1,11 +1,6 @@
 <?php
 include_once 'includes/functions.php';
 
-$db = connectDB();
-$usersCount = getUserCount();
-$linksCount = getLinksCount();
-$sumViews = getSumViews();
-
 ?>
 <!doctype html>
 <html lang="ru">
@@ -15,6 +10,7 @@ $sumViews = getSumViews();
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title><?php echo SITE_NAME ?></title>
 </head>
 <body>
@@ -28,24 +24,22 @@ $sumViews = getSumViews();
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?php echo getUrl() ?>">Главная</a>
+                        <a class="nav-link" aria-current="page" href="<?php echo getUrl() ?>">Главная</a>
                     </li>
-                    <?php if(isset($_SESSION['user']['id']) && !empty(isset($_SESSION['user']['id']))) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo getUrl('profile.php') ?>">Профиль</a>
+                        <a class="nav-link active" href="<?php echo getUrl('profile.php') ?>">Профиль</a>
                     </li>
                 </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="text" placeholder="Ссылка" aria-label="Ссылка">
+                    <button class="btn btn-success" type="submit"><i class="bi bi-plus-lg"></i></button>
+                </form>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <?php if(isset($_SESSION['user']['id']) && !empty(isset($_SESSION['user']['id']))) { ?>
-                            <a href="<?php echo getUrl('includes/logout.php') ?>" class="btn btn-primary">Выйти</a>
-                        <?php }else { ?>
-                            <a href="<?php echo getUrl('login.php') ?>" class="btn btn-primary">Войти</a>
-                        <?php } ?>
+                        <a href="<?php echo getUrl('includes/logout.php') ?>" class="btn btn-primary">Выйти</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-

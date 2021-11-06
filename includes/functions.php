@@ -90,5 +90,18 @@ function login($authData){
         $_SESSION['user'] = $user;
         header('Location: profile.php');
         die;
+    } else {
+        $_SESSION['error'] = "Не верный пароль.";
+        header('Location: login.php');
+        die;
+    }
+
+}
+
+function getErrors(){
+    $error = '';
+    if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+        $error = $_SESSION['error'];
+        unset($_SESSION['error']);
     }
 }
