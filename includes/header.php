@@ -32,7 +32,7 @@ $sumViews = getSumViews();
                     </li>
                     <?php if(isset($_SESSION['user']['id']) && !empty(isset($_SESSION['user']['id']))) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo getUrl('profile.php') ?>">Профиль</a>
+                        <a class="nav-link" href="<?php echo getUrl('profile.php');}?>">Профиль</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -48,4 +48,3 @@ $sumViews = getSumViews();
         </div>
     </nav>
 </header>
-
