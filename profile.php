@@ -1,5 +1,7 @@
 <?php include "includes/header_profile.php";
 
+if (!isset($_SESSION['user']['id'])) header('Location: /');
+
 $error = '';
 if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
     $error = $_SESSION['error'];
