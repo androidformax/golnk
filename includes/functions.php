@@ -98,10 +98,12 @@ function login($authData){
 
 }
 
-function getErrors(){
-    $error = '';
-    if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
-        $error = $_SESSION['error'];
-        unset($_SESSION['error']);
-    }
+function getUserLinks($user_id){
+    if(empty($user_id)) return [];
+    return db_query("SELECT * FROM `links` WHERE `user_id` = $user_id;")->fetchAll();
+}
+
+function deleteLink($id){
+    if(empty($id)) return false;
+    return db_query("DELETE FROM `links` WHERE `id` = $id;", true);
 }
