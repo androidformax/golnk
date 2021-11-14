@@ -1,4 +1,4 @@
-<?php include "includes/header_profile.php";
+<?php include_once "includes/header_profile.php";
 
 if (!isset($_SESSION['user']['id'])) header('Location: /');
 

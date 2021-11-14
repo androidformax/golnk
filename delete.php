@@ -1,5 +1,5 @@
 <?php
-include "includes/functions.php";
+include_once "includes/functions.php";
 
 if(!isset($_GET['id']) || empty($_GET['id'])) {
     header('Location: profile.php');
