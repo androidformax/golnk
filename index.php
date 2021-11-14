@@ -16,11 +16,13 @@ if(isset($_GET['url']) && !empty($_GET['url'])) {
 include_once "includes/header.php";
 ?>
 	<main class="container">
+        <?php if (!isset($_SESSION['user']['id'])) { ?>
 		<div class="row mt-5">
 			<div class="col">
 				<h2 class="text-center">Необходимо <a href="<?php echo getUrl('register.php') ?>">зарегистрироваться</a> или <a href="<?php echo getUrl('login.php') ?>">войти</a> под своей учетной записью</h2>
 			</div>
 		</div>
+        <?php } ?>
 		<div class="row mt-5">
 			<div class="col">
 				<h2 class="text-center">Пользователей в системе: <?php if (isset($usersCount)) {
