@@ -30,8 +30,8 @@ include_once 'includes/functions.php';
                         <a class="nav-link active" href="<?php echo getUrl('profile.php') ?>">Профиль</a>
                     </li>
                 </ul>
-                <form class="d-flex" action="add.php" method="post">
-                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['id']; ?>"
+                <form class="d-flex" action="/add.php" method="post">
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['id']; ?>">
                     <input class="form-control me-2" type="text" placeholder="Ссылка" aria-label="Ссылка" name="link">
                     <button class="btn btn-success" type="submit"><i class="bi bi-plus-lg"></i></button>
                 </form>

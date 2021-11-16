@@ -107,3 +107,12 @@ function deleteLink($id){
     if(empty($id)) return false;
     return db_query("DELETE FROM `links` WHERE `id` = $id;", true);
 }
+function addLink($user_id, $link) {
+    $short_link = generateShortLink();
+    return db_query("INSERT INTO `links` (`id`, `user_id`, `long_link`, `short_link`, `views`) VALUES (NULL, '$user_id', '$link', '$short_link', '0');");
+}
+
+function generateShortLink($size = 3){
+    $new_string = str_shuffle(URL_CHARS);
+    return substr($new_string, 0, $size);
+}
