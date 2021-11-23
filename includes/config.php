@@ -7,7 +7,7 @@ define ('SITE_NAME', "Shorten your URL for FREE / Бесплатный сокр�
 define ('HOST', "https://" . $_SERVER['HTTP_HOST']);
 define ('URL_CHARS', "abcdefghijklmnopqrstuvwxyz0123456789-");
 
-const DB_HOST = '127.0.0.1';
+const DB_HOST = 'localhost';
 const DB_NAME = 'golnk';
 const DB_USER = 'root';
 const DB_PASS = 'root';

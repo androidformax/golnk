@@ -116,3 +116,20 @@ function generateShortLink($size = 3){
     $new_string = str_shuffle(URL_CHARS);
     return substr($new_string, 0, $size);
 }
+
+function getErrorMassage(){
+    $error = '';
+    if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
+        $error = $_SESSION['error'];
+        unset($_SESSION['error']);
+    }
+    return $error;
+}
+function getSuccessMessage(){
+    $success = '';
+    if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
+        $success = $_SESSION['success'];
+        unset($_SESSION['success']);
+    }
+    return $success;
+}

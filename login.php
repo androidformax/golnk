@@ -1,24 +1,16 @@
 <?php
-include_once "includes/header.php";
-
+include_once "includes/functions.php";
 if (isset($_SESSION['user']['id'])) header('Location: /');
-
-$error = '';
-if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
-    $error = $_SESSION['error'];
-    unset($_SESSION['error']);
-}
-
-$success = '';
-if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
-    $success = $_SESSION['success'];
-    unset($_SESSION['success']);
-}
 
 if(isset($_POST['login']) && !empty($_POST['login']) && isset($_POST['pass']) && !empty($_POST['pass'])) {
     login($_POST);
 }
 
+$error = getErrorMassage();
+
+$success = getSuccessMessage();
+
+include_once "includes/header.php";
 ?>
 	<main class="container">
         <?php if(!empty($success)) {?>
