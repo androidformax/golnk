@@ -1,37 +1,26 @@
-<?php include_once "includes/header_profile.php";
+<?php
+include_once "includes/functions.php";
 
-if (!isset($_SESSION['user']['id'])) header('Location: /');
+if (!isset($_SESSION['user']['id'])) {
+    header('Location: '. getUrl());
+    die;
+}
 
 $links = getUserLinks($_SESSION['user']['id']);
 
-$error = '';
-if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
-    $error = $_SESSION['error'];
-    unset($_SESSION['error']);
-}
+$error = getMassage('error');
+$success = getMassage('success');
 
-$success = '';
-if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
-    $success = $_SESSION['success'];
-    unset($_SESSION['success']);
-}
-
+include_once "includes/header_profile.php";
 ?>
 
 	<main class="container">
-        <?php if(!empty($success)) {?>
-            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                <?php echo $success; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php } ?>
-        <?php if(!empty($error)) {?>
-            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                <?php echo $error; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php } ?>
+        <?php
+        showMessage($success, 'success');
+        showMessage($error);
+        ?>
 		<div class="row mt-5">
+            <?php if($links) { ?>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -59,6 +48,11 @@ if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
                 <?php  } ?>
 				</tbody>
 			</table>
+			<?php } else { ?>
+			<div class="col">
+			<h3 class="text-center">У вас пока нет ни одной ссылки.</h3>
+			</div>
+			<?php } ?>
 		</div>
 	</main>
 	<div aria-live="polite" aria-atomic="true" class="position-relative">

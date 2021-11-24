@@ -6,25 +6,16 @@ if(isset($_POST['login']) && !empty($_POST['login']) && isset($_POST['pass']) &&
     login($_POST);
 }
 
-$error = getErrorMassage();
-
-$success = getSuccessMessage();
+$error = getMassage('error');
+$success = getMassage('success');
 
 include_once "includes/header.php";
 ?>
 	<main class="container">
-        <?php if(!empty($success)) {?>
-            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                <?php echo $success; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php } ?>
-        <?php if(!empty($error)) {?>
-            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                <?php echo $error; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php } ?>
+        <?php
+        showMessage($success, 'success');
+        showMessage($error);
+        ?>
 		<div class="row mt-5">
 			<div class="col">
 				<h2 class="text-center">Вход в личный кабинет</h2>

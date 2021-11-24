@@ -1,37 +1,28 @@
 <?php
-include_once "includes/header.php";
+include_once "includes/functions.php";
 
-$error = '';
-if(isset($_SESSION['error']) && !empty($_SESSION['error'])) {
-    $error = $_SESSION['error'];
-    unset($_SESSION['error']);
+$error = getMassage('error');
+$success = getMassage('success');
+
+if(isset($_SESSION['user']['id'])) {
+    header('Location: '. getUrl('/profile.php'));
+    die;
 }
 
-$success = '';
-if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
-    $success = $_SESSION['success'];
-    unset($_SESSION['success']);
-}
 
 if(isset($_POST['login']) && !empty($_POST['login'])) {
     registerUser($_POST);
 }
 
+include_once "includes/header.php";
+
 ?>
 
 <main class="container">
-        <?php if(!empty($success)) {?>
-        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-            <?php echo $success; ?>
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-        <?php } ?>
-         <?php if(!empty($error)) {?>
-		<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-			<?php echo $error; ?>
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-        <?php } ?>
+    <?php
+    showMessage($success, 'success');
+    showMessage($error);
+    ?>
 		<div class="row mt-5">
 			<div class="col">
 				<h2 class="text-center">Регистрация</h2>
@@ -44,17 +35,17 @@ if(isset($_POST['login']) && !empty($_POST['login'])) {
 					<div class="mb-3">
 						<label for="login-input" class="form-label">Логин</label>
 						<input type="text" class="form-control is-valid" id="login-input" required name="login">
-						<div class="valid-feedback">Все ок</div>
+						<!--<div class="valid-feedback">Все ок</div>-->
 					</div>
 					<div class="mb-3">
 						<label for="password-input" class="form-label">Пароль</label>
 						<input type="password" class="form-control is-invalid" id="password-input" required name="pass">
-						<div class="invalid-feedback">А тут не ок</div>
+						<!--<div class="invalid-feedback">А тут не ок</div>-->
 					</div>
 					<div class="mb-3">
 						<label for="password-input2" class="form-label">Пароль еще раз</label>
 						<input type="password" class="form-control is-invalid" id="password-input2" required name="pass2">
-						<div class="invalid-feedback">И тут тоже не ок</div>
+						<!--<div class="invalid-feedback">И тут тоже не ок</div>-->
 					</div>
 					<button type="submit" class="btn btn-primary">Зарегистрироваться</button>
 				</form>

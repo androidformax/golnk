@@ -1,4 +1,4 @@
-<?php require_once 'includes/config.php';
+<?php require_once 'config.php';
 
 function getUrl($page = ''){
     return HOST . "/" . $page;
@@ -117,19 +117,19 @@ function generateShortLink($size = 3){
     return substr($new_string, 0, $size);
 }
 
-function getErrorMassage(){
-    $error = '';
-    if (isset($_SESSION['error']) && !empty($_SESSION['error'])) {
-        $error = $_SESSION['error'];
-        unset($_SESSION['error']);
+function getMassage($message='error'){
+    $gotmessage='';
+    if (isset($_SESSION[$message]) && !empty($_SESSION[$message])) {
+        $gotmessage = $_SESSION[$message];
+        unset($_SESSION[$message]);
     }
-    return $error;
+    return $gotmessage;
 }
-function getSuccessMessage(){
-    $success = '';
-    if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
-        $success = $_SESSION['success'];
-        unset($_SESSION['success']);
+
+function showMessage($message, $type='danger'){
+    if(!empty($message)) {
+           echo '<div class="alert alert-'.$type.' alert-dismissible fade show mt-3" role="alert">' . $message;
+           echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
     }
-    return $success;
 }
+
