@@ -105,6 +105,7 @@ function getUserLinks($user_id){
 
 function deleteLink($id){
     if(empty($id)) return false;
+    $_SESSION['success'] = "Ссылка успешно удалена";
     return db_query("DELETE FROM `links` WHERE `id` = $id;", true);
 }
 function addLink($user_id, $link) {
@@ -131,5 +132,17 @@ function showMessage($message, $type='danger'){
            echo '<div class="alert alert-'.$type.' alert-dismissible fade show mt-3" role="alert">' . $message;
            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
     }
+}
+
+function isOwnerLink($link_id){
+        if (empty($link_id)) return false;
+
+        if(isset($_SESSION['user']['id'])){
+            $user_id = db_query("SELECT `user_id` FROM `links` WHERE `id` = $link_id;")->fetchColumn();
+
+            if($user_id == $_SESSION['user']['id']) return true;
+        }
+        $_SESSION['error'] = 'Ошибка, такой ссылки у вас не существует, попробуйте удалить ссылку пренадлежащую Вам';
+return false;
 }
 

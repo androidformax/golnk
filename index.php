@@ -6,7 +6,7 @@ if(isset($_GET['url']) && !empty($_GET['url'])) {
     $link = getLinkInfo($url);
 
     if (empty($link)) {
-        header('Location: 404.php');
+        header('Location: '. getUrl('404.php'));
         die;
     }
     updateViews($url);

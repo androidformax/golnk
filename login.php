@@ -27,11 +27,11 @@ include_once "includes/header.php";
                 <form action="" method="post">
 					<div class="mb-3">
 						<label for="login-input" class="form-label">Логин</label>
-						<input type="text" class="form-control is-valid" id="login-input" required name="login">
+						<input type="text" class="form-control" id="login-input" required name="login">
 					</div>
 					<div class="mb-3">
 						<label for="password-input" class="form-label">Пароль</label>
-						<input type="password" class="form-control is-invalid" id="password-input" required name="pass">
+						<input type="password" class="form-control" id="password-input" required name="pass">
 					</div>
 					<button type="submit" class="btn btn-primary">Войти</button>
 				</form>

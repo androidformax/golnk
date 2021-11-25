@@ -1,12 +1,12 @@
 <?php
 include_once "includes/functions.php";
-
-if(!isset($_GET['id']) || empty($_GET['id'])) {
-    header('Location: profile.php');
+if(!isset($_SESSION['user']['id'])) {
+    header('Location: '. getUrl());
     die;
 }
+if(isset($_GET['id']) || !empty($_GET['id'])) {
+    if(isOwnerLink($_GET['id'])) deleteLink($_GET['id']);
+}
 
-deleteLink($_GET['id']);
-$_SESSION['success'] = "Ссылка успешно удалена";
-header('Location: profile.php');
+header('Location: '.getUrl('profile.php'));
 die;
