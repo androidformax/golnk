@@ -1,7 +1,9 @@
 <?php
 include_once "includes/functions.php";
-if (isset($_SESSION['user']['id'])) header('Location: /');
 
+if (isset($_SESSION['user']['id'])) {
+    redirectToLink('profile.php');
+}
 if(isset($_POST['login']) && !empty($_POST['login']) && isset($_POST['pass']) && !empty($_POST['pass'])) {
     login($_POST);
 }

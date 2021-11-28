@@ -1,18 +1,16 @@
 <?php
 include_once "includes/functions.php";
 
-$error = getMassage('error');
-$success = getMassage('success');
-
 if(isset($_SESSION['user']['id'])) {
-    header('Location: '. getUrl('/profile.php'));
-    die;
+    redirectToLink('profile.php');
 }
-
 
 if(isset($_POST['login']) && !empty($_POST['login'])) {
     registerUser($_POST);
 }
+
+$error = getMassage('error');
+$success = getMassage('success');
 
 include_once "includes/header.php";
 

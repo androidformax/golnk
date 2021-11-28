@@ -8,5 +8,4 @@ if(isset($_GET['id']) || !empty($_GET['id'])) {
     if(isOwnerLink($_GET['id'])) deleteLink($_GET['id']);
 }
 
-header('Location: '.getUrl('profile.php'));
-die;
+redirectToLink();

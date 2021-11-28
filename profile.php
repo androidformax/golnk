@@ -41,8 +41,8 @@ include_once "includes/header_profile.php";
                         <!--<td class="short-link"><?php /*echo getUrl($link['short_link']); */?></td> // вариант без подсетки ссылки-->
 						<td><?php  echo $link['views'] ?></td>
 						<td>
-							<a href="<?php  echo getUrl('edit.php?id=' . $link['id']) ?>" class="btn btn-warning btn-sm" title="Редактировать"><i class="bi bi-pencil"></i></a>
-							<a href="<?php  echo getUrl('delete.php?id=' . $link['id']) ?>" class="btn btn-danger btn-sm" title="Удалить"><i class="bi bi-trash"></i></a>
+							<a href="<?php  echo getUrl('editlink.php?link=' . $link['short_link']); ?>" class="btn btn-warning btn-sm" title="Редактировать"><i class="bi bi-pencil"></i></a>
+							<a href="<?php  echo getUrl('delete.php?id=' . $link['id']); ?>" class="btn btn-danger btn-sm" title="Удалить"><i class="bi bi-trash"></i></a>
 						</td>
 					</tr>
                 <?php  } ?>

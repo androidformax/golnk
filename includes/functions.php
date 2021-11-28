@@ -108,7 +108,11 @@ function deleteLink($id){
     $_SESSION['success'] = "Ссылка успешно удалена";
     return db_query("DELETE FROM `links` WHERE `id` = $id;", true);
 }
-function addLink($user_id, $link) {
+
+function addLink($link) {
+    if(empty($link)) return false;
+
+    $user_id = $_SESSION['user']['id'];
     $short_link = generateShortLink();
     return db_query("INSERT INTO `links` (`id`, `user_id`, `long_link`, `short_link`, `views`) VALUES (NULL, '$user_id', '$link', '$short_link', '0');");
 }
@@ -117,7 +121,13 @@ function generateShortLink($size = 3){
     $new_string = str_shuffle(URL_CHARS);
     return substr($new_string, 0, $size);
 }
-
+function generateShortLink2($size = 3){
+    $new_string = '';
+    for ($i = 0; $i < $size; $i++) {
+        $new_string .= substr(URL_CHARS, rand(0, strlen(URL_CHARS)), 1);
+    }
+    return $new_string;
+}
 function getMassage($message='error'){
     $gotmessage='';
     if (isset($_SESSION[$message]) && !empty($_SESSION[$message])) {
@@ -142,7 +152,18 @@ function isOwnerLink($link_id){
 
             if($user_id == $_SESSION['user']['id']) return true;
         }
-        $_SESSION['error'] = 'Ошибка, такой ссылки у вас не существует, попробуйте удалить ссылку пренадлежащую Вам';
+        $_SESSION['error'] = 'Ошибка! Такой ссылки в вашем списке нет, попробуйте удалить ссылку из вашего списка!';
 return false;
 }
 
+function redirectToLink($link='profile.php'){
+    header('Location: '.getUrl($link));
+    die;
+}
+
+function editLink($link_id, $new_link){
+    if(empty($link_id) || empty($new_link)) return false;
+    $_SESSION['success'] = "Ссылка успешно отредактирована";
+
+    return db_query("UPDATE `links` SET `long_link` = '$new_link' WHERE `id` = '$link_id';", true);
+}

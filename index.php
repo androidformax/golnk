@@ -6,8 +6,7 @@ if(isset($_GET['url']) && !empty($_GET['url'])) {
     $link = getLinkInfo($url);
 
     if (empty($link)) {
-        header('Location: '. getUrl('404.php'));
-        die;
+        redirectToLink('404.php');
     }
     updateViews($url);
     header('Location: ' . $link['long_link']);
