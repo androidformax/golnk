@@ -31,7 +31,7 @@ include_once "includes/header_profile.php";
 						<label for="link-input" class="form-label">Исправьте или введите новую ссылку </label>
 						<input type="text" class="form-control" id="link-input" required name="link" value="<?php echo $link['long_link'] ?>">
 					</div>
-                    <input type="hidden" name="$link_id" value="<?php echo $link['id']?>">
+                    <input type="hidden" name="link_id" value="<?php echo $link['id']?>">
 					<button type="submit" class="btn btn-warning">Редактировать</button>
 				</form>
 			</div>
