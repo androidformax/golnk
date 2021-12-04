@@ -97,6 +97,9 @@ function login($authData){
     }
 
 }
+function reu($link){
+    return $link;
+}
 
 function getUserLinks($user_id){
     if(empty($user_id)) return [];
